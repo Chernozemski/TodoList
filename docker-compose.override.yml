@@ -1,0 +1,19 @@
+services:
+  todolist.client:
+    environment:
+        - VITE_PORT=3000
+        - NODE_ENV=production
+        - BACKEND_HTTP_URL=http://todolist.server:5000
+    ports:
+      - "5001:3000"
+  todolist.server:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=5000
+    ports:
+      - "5000:5000"
+  todolist.database:
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: todolist

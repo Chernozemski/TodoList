@@ -1,0 +1,20 @@
+services:
+  todolist.client:
+    build:
+      context: .
+      dockerfile: todolist.client/docker/Dockerfile
+    depends_on:
+        - todolist.server
+  todolist.server:
+    build:
+      context: .
+      dockerfile: TodoList.Server/Dockerfile
+    depends_on:
+        - todolist.database
+  todolist.database:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
